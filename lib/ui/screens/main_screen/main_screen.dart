@@ -24,7 +24,7 @@ class MainScreen extends StatelessWidget {
       create: (BuildContext context) => MainScreenVM(),
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: const CustomAppBar(title: "Main Screen"),
+        // appBar: const CustomAppBar(title: "Main Screen"),
         body: Consumer<MainScreenVM>(
           builder: (context, vm, child) {
             return Container(
