@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moviesdb_task/core/constants/app_colors.dart';
+import 'package:moviesdb_task/core/provider/movies_list_provider.dart';
 import 'package:moviesdb_task/routes.dart';
 import 'package:moviesdb_task/ui/screens/main_screen/main_screen.dart';
+import 'package:moviesdb_task/ui/screens/main_screen/main_screen_vm.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
@@ -17,34 +20,40 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => MoviesListProvider(),),
+            ChangeNotifierProvider(create: (context) => MainScreenVM(context: context),),
+          ],
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData(
 
-            scaffoldBackgroundColor: AppColors.white,
-            // appBarTheme: const AppBarTheme(
-            //   color: AppColors.primary,
-            // ),
+              scaffoldBackgroundColor: AppColors.white,
+              // appBarTheme: const AppBarTheme(
+              //   color: AppColors.primary,
+              // ),
 
-            floatingActionButtonTheme: const FloatingActionButtonThemeData(
-              backgroundColor: AppColors.secondary,
+              floatingActionButtonTheme: const FloatingActionButtonThemeData(
+                backgroundColor: AppColors.secondary,
+              ),
+
+              textTheme: GoogleFonts.poppinsTextTheme(
+              ).copyWith(),
+              colorScheme: ColorScheme.fromSeed(
+                  seedColor: AppColors.primary,
+                error: AppColors.danger,
+
+              ),
+              useMaterial3: true,
             ),
+            // home: const MyHomePage(title: 'Flutter Demo Home Page'),
 
-            textTheme: GoogleFonts.poppinsTextTheme(
-            ).copyWith(),
-            colorScheme: ColorScheme.fromSeed(
-                seedColor: AppColors.primary,
-              error: AppColors.danger,
+            initialRoute: MainScreen.routeName,
+            onGenerateRoute: AppRoutes.onGenerateRoute,
 
-            ),
-            useMaterial3: true,
           ),
-          // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-
-          initialRoute: MainScreen.routeName,
-          onGenerateRoute: AppRoutes.onGenerateRoute,
-
         );
       }
     );

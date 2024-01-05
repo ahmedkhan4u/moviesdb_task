@@ -14,6 +14,7 @@ class DefaultButton extends StatelessWidget {
   final double textSize;
   final FontWeight fontWeight;
   final bool isLoading;
+  final BoxBorder? border;
 
   const DefaultButton({
     super.key,
@@ -27,6 +28,8 @@ class DefaultButton extends StatelessWidget {
     this.fontWeight = FontWeight.w500,
     this.buttonColor = AppColors.secondary,
     this.isLoading = false,
+    this.border,
+
   });
 
   @override
@@ -36,14 +39,18 @@ class DefaultButton extends StatelessWidget {
       width: width ?? 40.w,
 
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.px),
-          color: AppColors.primary
+        borderRadius: BorderRadius.circular(6.px),
+        color: buttonColor,
+        border: border,
       ),
+
       child: Material(
         borderRadius: BorderRadius.circular(6.px),
+        // color: buttonColor,
         color: Colors.transparent,
         child: InkWell(
           //splashColor: AppColors.primary,
+
           borderRadius: BorderRadius.circular(6.px),
           onTap: onPress,
           child: Center(

@@ -43,6 +43,7 @@ dependencies:
   another_flushbar: ^1.12.30
   dropdown_button2: ^2.3.9
   shared_preferences: ^2.2.2
+  youtube_player_flutter: ^8.1.2
 
 dev_dependencies:
   flutter_test:

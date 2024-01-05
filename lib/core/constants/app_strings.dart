@@ -4,4 +4,6 @@ abstract class AppStrings {
 
   static const ok = "OK";
 
+  static const String somethingWentWrong = "Something went wrong. Try again later";
+
 }

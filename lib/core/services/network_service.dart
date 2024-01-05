@@ -16,11 +16,8 @@ class NetworkService extends NetworkBase {
   Future<http.Response> getGetApiResponse(String url) async {
     dynamic responseJson;
     try {
-      final response = await http.get(Uri.parse(url), headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-      }).timeout(
-        const Duration(seconds: 20),
+      final response = await http.get(Uri.parse(url)).timeout(
+        const Duration(seconds: 10),
         onTimeout: () => http.Response("Error", 408),
       );
       responseJson = response;
